@@ -52,4 +52,8 @@ public class ParkingBoy {
         }
         return null;
     }
+
+    public String getResponseMessage() {
+        return null;
+    }
 }

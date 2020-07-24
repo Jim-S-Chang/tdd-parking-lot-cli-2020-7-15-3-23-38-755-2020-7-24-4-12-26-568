@@ -111,11 +111,11 @@ public class ParkingBoyTest {
     public void should_return_null_when_parking_given_no_position() {
         // given
         ParkingBoy parkingBoy = new ParkingBoy();
-        for (int i=0;i<10;i++){
-            Car car = new Car("A1234"+i);
+        for (int i = 0; i < 10; i++) {
+            Car car = new Car("A1234" + i);
             parkingBoy.park(car);
         }
-        Car car11 = new Car("A1234"+10);
+        Car car11 = new Car("A1234" + 10);
 
         // when
         Ticket ticket = parkingBoy.park(car11);
@@ -128,7 +128,7 @@ public class ParkingBoyTest {
     public void should_return_null_when_parking_given_parked_car() {
         // given
         ParkingBoy parkingBoy = new ParkingBoy();
-        Car car = new Car("A1234"+10);
+        Car car = new Car("A1234" + 10);
         parkingBoy.park(car);
 
         // when
@@ -148,5 +148,20 @@ public class ParkingBoyTest {
 
         // then
         assertTrue(ticket == null);
+    }
+
+    @Test
+    public void should_return_unrecognized_parking_ticket_when_fetching_given_null() {
+        // given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Car car = new Car("A1234");
+        parkingBoy.park(car);
+
+        // when
+        parkingBoy.fetch(null);
+        String result = parkingBoy.getResponseMessage();
+
+        // then
+        assertEquals("Unrecognized parking ticket.", result);
     }
 }
