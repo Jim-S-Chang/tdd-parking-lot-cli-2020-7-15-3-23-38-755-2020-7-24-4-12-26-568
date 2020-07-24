@@ -33,7 +33,7 @@ public class ParkingBoy {
 
     public Car fetch(Ticket ticket) {
         if (ticket == null) {
-            this.responseMessage = "Unrecognized parking ticket.";
+            this.responseMessage = "Please provide your parking ticket..";
         }
         Car car = findCar(ticket);
         if (car != null) {

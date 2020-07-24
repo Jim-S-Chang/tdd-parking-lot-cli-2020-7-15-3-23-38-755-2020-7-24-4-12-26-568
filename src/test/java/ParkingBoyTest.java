@@ -162,7 +162,7 @@ public class ParkingBoyTest {
         String result = parkingBoy.getResponseMessage();
 
         // then
-        assertEquals("Unrecognized parking ticket.", result);
+        assertEquals("Please provide your parking ticket.", result);
     }
 
     @Test
