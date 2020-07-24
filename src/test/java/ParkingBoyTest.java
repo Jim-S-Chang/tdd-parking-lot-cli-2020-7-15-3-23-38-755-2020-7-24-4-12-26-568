@@ -76,4 +76,18 @@ public class ParkingBoyTest {
         // then
         assertTrue(resultCar == null);
     }
+
+    @Test
+    public void should_return_null_when_after_fetching_given_null() {
+        // given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Car car = new Car("A1234");
+        parkingBoy.park(car);
+
+        // when
+        Car resultCar = parkingBoy.fetch(null);
+
+        // then
+        assertTrue(resultCar == null);
+    }
 }
