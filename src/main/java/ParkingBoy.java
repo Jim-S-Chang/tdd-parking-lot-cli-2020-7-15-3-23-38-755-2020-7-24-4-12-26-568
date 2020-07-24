@@ -25,6 +25,9 @@ public class ParkingBoy {
     }
 
     private Car findCar(Ticket ticket) {
+        if (ticket == null) {
+            return null;
+        }
         if (parkingLot != null) {
             for (Car car : parkingLot) {
                 if (car.getCarNumber().equals(ticket.getNumber())) {
@@ -34,6 +37,7 @@ public class ParkingBoy {
                 }
             }
         }
+
         return null;
     }
 }
