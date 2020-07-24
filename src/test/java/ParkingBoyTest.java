@@ -137,4 +137,16 @@ public class ParkingBoyTest {
         // then
         assertTrue(ticket == null);
     }
+
+    @Test
+    public void should_return_null_when_parking_given_null_car() {
+        // given
+        ParkingBoy parkingBoy = new ParkingBoy();
+
+        // when
+        Ticket ticket = parkingBoy.park(null);
+
+        // then
+        assertTrue(ticket == null);
+    }
 }
