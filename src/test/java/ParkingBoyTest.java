@@ -2,6 +2,8 @@ import Car.Car;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.LinkedList;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
@@ -11,7 +13,9 @@ public class ParkingBoyTest {
     @Test
     public void should_return_ticket_when_after_parking_given_a_car() {
         // given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        LinkedList<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = Mockito.mock(Car.class);
         when(car.getCarNumber()).thenReturn("A1234");
 
@@ -25,7 +29,9 @@ public class ParkingBoyTest {
     @Test
     public void should_return_car_when_after_fetching_given_a_ticket() {
         // given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        LinkedList<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car("A1234");
         Ticket ticket = parkingBoy.park(car);
 
@@ -40,7 +46,9 @@ public class ParkingBoyTest {
     @Test
     public void should_return_right_car_when_after_fetching_given_parking_three_cars_and_a_ticket() {
         // given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        LinkedList<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car1 = new Car("A1234");
         Car car2 = new Car("B5678");
         Car car3 = new Car("C6789");
@@ -65,7 +73,9 @@ public class ParkingBoyTest {
     @Test
     public void should_return_null_when_after_fetching_given_wrong_ticket() {
         // given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        LinkedList<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car("A1234");
         parkingBoy.park(car);
         Ticket wrongTicket = new Ticket("B5678");
@@ -80,7 +90,9 @@ public class ParkingBoyTest {
     @Test
     public void should_return_null_when_after_fetching_given_null() {
         // given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        LinkedList<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car("A1234");
         parkingBoy.park(car);
 
@@ -94,7 +106,9 @@ public class ParkingBoyTest {
     @Test
     public void should_return_null_when_after_fetching_given_used_ticket() {
         // given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        LinkedList<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car("A1234");
         Ticket ticket = parkingBoy.park(car);
         Car resultCar1 = parkingBoy.fetch(ticket);
@@ -110,7 +124,9 @@ public class ParkingBoyTest {
     @Test
     public void should_return_null_when_parking_given_no_position() {
         // given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        LinkedList<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         for (int i = 0; i < 10; i++) {
             Car car = new Car("A1234" + i);
             parkingBoy.park(car);
@@ -127,7 +143,9 @@ public class ParkingBoyTest {
     @Test
     public void should_return_null_when_parking_given_parked_car() {
         // given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        LinkedList<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car("A1234" + 10);
         parkingBoy.park(car);
 
@@ -141,7 +159,9 @@ public class ParkingBoyTest {
     @Test
     public void should_return_null_when_parking_given_null_car() {
         // given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        LinkedList<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
 
         // when
         Ticket ticket = parkingBoy.park(null);
@@ -153,7 +173,9 @@ public class ParkingBoyTest {
     @Test
     public void should_return_provide_parking_ticket_when_fetching_given_null() {
         // given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        LinkedList<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car("A1234");
         parkingBoy.park(car);
 
@@ -168,7 +190,10 @@ public class ParkingBoyTest {
     @Test
     public void should_return_unrecognized_parking_ticket_when_fetching_given_used_ticket() {
         // given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        LinkedList<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+
         Car car = new Car("A1234");
         Ticket ticket = parkingBoy.park(car);
         parkingBoy.fetch(ticket);
@@ -184,7 +209,9 @@ public class ParkingBoyTest {
     @Test
     public void should_return_unrecognized_parking_ticket_when_fetching_given_wrong_ticket() {
         // given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        LinkedList<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car("A1234");
         parkingBoy.park(car);
         Ticket wrongTicket = new Ticket("B5678");
@@ -200,7 +227,9 @@ public class ParkingBoyTest {
     @Test
     public void should_return_not_enough_position_when_parking_given_no_position() {
         // given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        LinkedList<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         for (int i = 0; i < 10; i++) {
             Car car = new Car("A1234" + i);
             parkingBoy.park(car);

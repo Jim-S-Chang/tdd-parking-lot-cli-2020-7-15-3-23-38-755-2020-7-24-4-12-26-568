@@ -4,17 +4,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ParkingBoy {
-    private List<Car> parkingLot;
+    private List<ParkingLot> parkingLots;
     private String responseMessage;
     private static final int maxPosition = 10;
 
-    public ParkingBoy() {
-        this.parkingLot = new LinkedList<Car>();
+    public ParkingBoy(LinkedList<ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
         this.responseMessage = "";
     }
 
     public Ticket park(Car car) {
-        if (parkingLot.size() == maxPosition){
+        if (parkingLots.get(parkingLots.size() - 1).getCurrentUsedPosition() == parkingLots.get(parkingLots.size() - 1).getMaxPosition()) {
             this.responseMessage = "Not enough position.";
             return null;
         }
@@ -22,14 +22,22 @@ public class ParkingBoy {
             return null;
         }
         Ticket ticket = new Ticket(car.getCarNumber());
-        parkingLot.add(car);
+        for (ParkingLot parkingLot : parkingLots) {
+            if (parkingLot.getCurrentUsedPosition() == parkingLot.getMaxPosition()) {
+                continue;
+            } else {
+                parkingLot.park(car);
+            }
+        }
         return ticket;
     }
 
     private boolean isCarParked(Car car) {
-        for (Car carInParkingLot : parkingLot) {
-            if (car.getCarNumber() == carInParkingLot.getCarNumber()) {
-                return true;
+        for (ParkingLot parkingLot : parkingLots) {
+            for (Car carInParkingLot : parkingLot.getParkedCar()) {
+                if (car.getCarNumber() == carInParkingLot.getCarNumber()) {
+                    return true;
+                }
             }
         }
         return false;
@@ -50,13 +58,16 @@ public class ParkingBoy {
         if (ticket == null) {
             return null;
         }
-        if (parkingLot != null) {
-            for (Car car : parkingLot) {
-                if (car.getCarNumber().equals(ticket.getNumber())) {
-                    Car resultCar = car;
-                    parkingLot.remove(car);
-                    return resultCar;
+        if (parkingLots != null) {
+            for (ParkingLot parkingLot : parkingLots) {
+                for (Car car : parkingLot.getParkedCar()) {
+                    if (car.getCarNumber().equals(ticket.getNumber())) {
+                        Car resultCar = car;
+                        parkingLot.remove(car);
+                        return resultCar;
+                    }
                 }
+
             }
         }
         this.responseMessage = "Unrecognized parking ticket.";
