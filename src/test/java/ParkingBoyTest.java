@@ -106,4 +106,21 @@ public class ParkingBoyTest {
         assertEquals("A1234", resultCar1.getCarNumber());
         assertTrue(resultCar2 == null);
     }
+
+    @Test
+    public void should_return_null_when_parking_given_no_position() {
+        // given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        for (int i=0;i<10;i++){
+            Car car = new Car("A1234"+i);
+            parkingBoy.park(car);
+        }
+        Car car11 = new Car("A1234"+10);
+
+        // when
+        Ticket ticket = parkingBoy.park(car11);
+
+        // then
+        assertTrue(ticket == null);
+    }
 }
