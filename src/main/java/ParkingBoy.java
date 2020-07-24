@@ -5,12 +5,16 @@ import java.util.List;
 
 public class ParkingBoy {
     private List<Car> parkingLot;
+    private static final int maxPosition = 10;
 
     public ParkingBoy() {
         this.parkingLot = new LinkedList<Car>();
     }
 
     public Ticket park(Car car) {
+        if (parkingLot.size() == maxPosition) {
+            return null;
+        }
         Ticket ticket = new Ticket(car.getCarNumber());
         parkingLot.add(car);
         return ticket;
