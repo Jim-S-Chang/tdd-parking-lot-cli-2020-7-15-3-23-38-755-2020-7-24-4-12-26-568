@@ -27,6 +27,7 @@ public class ParkingBoy {
                 continue;
             } else {
                 parkingLot.park(car);
+                break;
             }
         }
         return ticket;

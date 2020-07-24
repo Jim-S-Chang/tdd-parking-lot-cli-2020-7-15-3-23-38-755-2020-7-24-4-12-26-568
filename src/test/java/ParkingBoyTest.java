@@ -243,4 +243,29 @@ public class ParkingBoyTest {
         // then
         assertEquals("Not enough position.", result);
     }
+
+    @Test
+    public void should_return_first_parking_lot_full_and_park_11th_car_to_second_when_parking_given_11_cars() {
+        // given
+        LinkedList<ParkingLot> parkingLots = new LinkedList<>();
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+
+        // when
+        for (int i = 0; i < 10; i++) {
+            Car car = new Car("A1234" + i);
+            parkingBoy.park(car);
+        }
+        Car car11 = new Car("A1234" + 10);
+
+        parkingBoy.park(car11);
+
+        // then
+        assertEquals(10, parkingLot1.getCurrentUsedPosition());
+        assertEquals(1, parkingLot2.getCurrentUsedPosition());
+        assertTrue(parkingLot2.getParkedCar().contains(car11));
+    }
 }
