@@ -151,7 +151,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    public void should_return_unrecognized_parking_ticket_when_fetching_given_null() {
+    public void should_return_provide_parking_ticket_when_fetching_given_null() {
         // given
         ParkingBoy parkingBoy = new ParkingBoy();
         Car car = new Car("A1234");
