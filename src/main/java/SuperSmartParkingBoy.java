@@ -19,6 +19,7 @@ public class SuperSmartParkingBoy extends ParkingBoy{
         Ticket ticket = new Ticket(car.getCarNumber());
         ParkingLot largestAvailablePositionRateLot = findLargestAvailablePositionRate();
         largestAvailablePositionRateLot.park(car);
+        setResponseMessage("");
         return ticket;
     }
 
