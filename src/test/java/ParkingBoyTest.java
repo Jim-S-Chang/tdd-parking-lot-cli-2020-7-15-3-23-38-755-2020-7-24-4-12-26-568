@@ -33,11 +33,8 @@ public class ParkingBoyTest {
         Car resultCar = parkingBoy.fetch(ticket);
 
         // then
-        if (car != null) {
-            assertEquals("A1234", resultCar.getCarNumber());
-        } else {
-            assertFalse(true);
-        }
+        assertFalse(car == null);
+        assertEquals("A1234", resultCar.getCarNumber());
     }
 
     @Test
@@ -57,21 +54,12 @@ public class ParkingBoyTest {
         Car resultCar2 = parkingBoy.fetch(ticket2);
 
         // then
-        if (resultCar1 != null) {
-            assertEquals("A1234", resultCar1.getCarNumber());
-        } else {
-            assertFalse(true);
-        }
-        if (resultCar2 != null) {
-            assertEquals("B5678", resultCar2.getCarNumber());
-        } else {
-            assertFalse(true);
-        }
-        if (resultCar3 != null) {
-            assertEquals("C6789", resultCar3.getCarNumber());
-        } else {
-            assertFalse(true);
-        }
+        assertFalse(resultCar1 == null);
+        assertEquals("A1234", resultCar1.getCarNumber());
+        assertFalse(resultCar2 == null);
+        assertEquals("B5678", resultCar2.getCarNumber());
+        assertFalse(resultCar3 == null);
+        assertEquals("C6789", resultCar3.getCarNumber());
     }
 
     @Test
@@ -86,10 +74,6 @@ public class ParkingBoyTest {
         Car resultCar = parkingBoy.fetch(wrongTicket);
 
         // then
-        if (resultCar == null) {
-            assertTrue(true);
-        } else {
-            assertTrue(false);
-        }
+        assertTrue(resultCar == null);
     }
 }
