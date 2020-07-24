@@ -33,7 +33,7 @@ public class ParkingBoy {
         return ticket;
     }
 
-    private boolean isCarParked(Car car) {
+    protected boolean isCarParked(Car car) {
         for (ParkingLot parkingLot : parkingLots) {
             for (Car carInParkingLot : parkingLot.getParkedCar()) {
                 if (car.getCarNumber() == carInParkingLot.getCarNumber()) {
@@ -77,5 +77,13 @@ public class ParkingBoy {
 
     public String getResponseMessage() {
         return this.responseMessage;
+    }
+
+    public List<ParkingLot> getParkingLots() {
+        return parkingLots;
+    }
+
+    public void setResponseMessage(String responseMessage) {
+        this.responseMessage = responseMessage;
     }
 }
