@@ -55,6 +55,7 @@ public class ParkingBoy {
                 }
             }
         }
+        this.responseMessage = "Unrecognized parking ticket.";
         return null;
     }
 
