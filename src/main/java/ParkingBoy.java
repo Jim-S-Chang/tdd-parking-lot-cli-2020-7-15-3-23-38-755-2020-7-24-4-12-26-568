@@ -5,10 +5,12 @@ import java.util.List;
 
 public class ParkingBoy {
     private List<Car> parkingLot;
+    private String responseMessage;
     private static final int maxPosition = 10;
 
     public ParkingBoy() {
         this.parkingLot = new LinkedList<Car>();
+        this.responseMessage = "";
     }
 
     public Ticket park(Car car) {
@@ -30,6 +32,9 @@ public class ParkingBoy {
     }
 
     public Car fetch(Ticket ticket) {
+        if (ticket == null) {
+            this.responseMessage = "Unrecognized parking ticket.";
+        }
         Car car = findCar(ticket);
         if (car != null) {
             return car;
@@ -54,6 +59,6 @@ public class ParkingBoy {
     }
 
     public String getResponseMessage() {
-        return null;
+        return this.responseMessage;
     }
 }
