@@ -2,9 +2,10 @@ import Car.Car;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
+
+//
 
 public class ParkingBoyTest {
     @Test
@@ -70,6 +71,25 @@ public class ParkingBoyTest {
             assertEquals("C6789", resultCar3.getCarNumber());
         } else {
             assertFalse(true);
+        }
+    }
+
+    @Test
+    public void should_return_null_when_after_fetching_given_wrong_ticket() {
+        // given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Car car = new Car("A1234");
+        parkingBoy.park(car);
+        Ticket wrongTicket = new Ticket("B5678");
+
+        // when
+        Car resultCar = parkingBoy.fetch(wrongTicket);
+
+        // then
+        if (resultCar == null) {
+            assertTrue(true);
+        } else {
+            assertTrue(false);
         }
     }
 }
