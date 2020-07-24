@@ -180,4 +180,20 @@ public class ParkingBoyTest {
         // then
         assertEquals("Unrecognized parking ticket.", result);
     }
+
+    @Test
+    public void should_return_unrecognized_parking_ticket_when_fetching_given_wrong_ticket() {
+        // given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Car car = new Car("A1234");
+        parkingBoy.park(car);
+        Ticket wrongTicket = new Ticket("B5678");
+
+        // when
+        parkingBoy.fetch(wrongTicket);
+        String result = parkingBoy.getResponseMessage();
+
+        // then
+        assertEquals("Unrecognized parking ticket.", result);
+    }
 }
