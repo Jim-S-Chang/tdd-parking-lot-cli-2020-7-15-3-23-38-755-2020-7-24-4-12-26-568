@@ -9,8 +9,7 @@ public class SmartParkingBoy extends ParkingBoy{
 
     @Override
     public Ticket park(Car car) {
-        if (this.getParkingLots().get(this.getParkingLots().size() - 1).getCurrentUsedPosition() ==
-                this.getParkingLots().get(this.getParkingLots().size() - 1).getMaxPosition()) {
+        if (isAllParkingLotsFull()) {
             this.setResponseMessage("Not enough position.");
             return null;
         }
@@ -20,6 +19,7 @@ public class SmartParkingBoy extends ParkingBoy{
         Ticket ticket = new Ticket(car.getCarNumber());
         ParkingLot maxEmptyParkingLot = findMaxEmptyParkingLot();
         maxEmptyParkingLot.park(car);
+        this.setResponseMessage("");
         return ticket;
     }
 
