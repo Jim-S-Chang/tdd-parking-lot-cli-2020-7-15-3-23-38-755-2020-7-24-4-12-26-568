@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.when;
 
 public class ParkingBoyTest {
@@ -19,17 +20,22 @@ public class ParkingBoyTest {
         // then
         assertEquals("A1234", ticket.getNumber());
     }
+
     @Test
     public void should_return_car_when_after_fetching_given_a_ticket() {
         // given
         ParkingBoy parkingBoy = new ParkingBoy();
-        Ticket ticket = Mockito.mock(Ticket.class);
-        when(ticket.getNumber()).thenReturn("A1234");
+        Car car = new Car("A1234");
+        Ticket ticket = parkingBoy.park(car);
 
         // when
-        Car car = parkingBoy.fetch(ticket);
+        Car resultCar = parkingBoy.fetch(ticket);
 
         // then
-        assertEquals("A1234", car.getCarNumber());
+        if (car != null) {
+            assertEquals("A1234", resultCar.getCarNumber());
+        } else {
+            assertFalse(true);
+        }
     }
 }
