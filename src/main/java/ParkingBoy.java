@@ -14,7 +14,11 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car) {
-        if (parkingLot.size() == maxPosition || isCarParked(car) || car == null) {
+        if (parkingLot.size() == maxPosition){
+            this.responseMessage = "Not enough position.";
+            return null;
+        }
+        if (isCarParked(car) || car == null) {
             return null;
         }
         Ticket ticket = new Ticket(car.getCarNumber());

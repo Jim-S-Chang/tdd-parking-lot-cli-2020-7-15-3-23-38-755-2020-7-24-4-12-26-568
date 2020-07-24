@@ -208,6 +208,7 @@ public class ParkingBoyTest {
         Car car11 = new Car("A1234" + 10);
 
         // when
+        parkingBoy.park(car11);
         String result = parkingBoy.getResponseMessage();
 
         // then
