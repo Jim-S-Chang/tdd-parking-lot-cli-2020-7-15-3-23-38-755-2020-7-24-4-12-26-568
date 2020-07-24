@@ -14,7 +14,7 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car) {
-        if (parkingLots.get(parkingLots.size() - 1).getCurrentUsedPosition() == parkingLots.get(parkingLots.size() - 1).getMaxPosition()) {
+        if (isAllParkingLotsFull()) {
             this.responseMessage = "Not enough position.";
             return null;
         }
@@ -30,7 +30,17 @@ public class ParkingBoy {
                 break;
             }
         }
+        this.responseMessage = "";
         return ticket;
+    }
+
+    protected boolean isAllParkingLotsFull() {
+        for (ParkingLot parkingLot: parkingLots){
+            if (parkingLot.getCurrentUsedPosition() != parkingLot.getMaxPosition()){
+                return false;
+            }
+        }
+        return true;
     }
 
     protected boolean isCarParked(Car car) {

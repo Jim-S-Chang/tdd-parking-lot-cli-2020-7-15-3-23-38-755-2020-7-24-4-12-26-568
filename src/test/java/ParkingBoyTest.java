@@ -268,4 +268,29 @@ public class ParkingBoyTest {
         assertEquals(1, parkingLot2.getCurrentUsedPosition());
         assertTrue(parkingLot2.getParkedCar().contains(car11));
     }
+
+    @Test
+    public void should_return_ticket_when_parking_full_and_leave_one_given_full_in_2nd_parking_lot_1_empty_in_1st_parking_lot() {
+        // given
+        LinkedList<ParkingLot> parkingLots = new LinkedList<>();
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        for (int i = 0; i < 20; i++) {
+            Car car = new Car("A1234" + i);
+            parkingBoy.park(car);
+        }
+        parkingBoy.fetch(new Ticket("A12345"));
+        Car car21 = new Car("A1234" + 21);
+
+        // when
+        Ticket ticket = parkingBoy.park(car21);
+        String result = parkingBoy.getResponseMessage();
+
+        // then
+        assertEquals("", result);
+        assertEquals("A123421", ticket.getNumber());
+    }
 }

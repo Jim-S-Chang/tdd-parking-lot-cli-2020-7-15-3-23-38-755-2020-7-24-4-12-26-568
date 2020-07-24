@@ -34,5 +34,6 @@ public class ParkingLot {
 
     public void remove(Car car) {
         parkedCar.remove(car);
+        currentUsedPosition--;
     }
 }
