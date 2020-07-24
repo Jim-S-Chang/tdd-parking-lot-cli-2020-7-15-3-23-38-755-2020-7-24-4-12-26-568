@@ -15,6 +15,9 @@ public class ParkingLot {
         this.currentUsedPosition = 0;
     }
 
+    public ParkingLot(int i) {
+    }
+
     public int getCurrentUsedPosition() {
         return currentUsedPosition;
     }
