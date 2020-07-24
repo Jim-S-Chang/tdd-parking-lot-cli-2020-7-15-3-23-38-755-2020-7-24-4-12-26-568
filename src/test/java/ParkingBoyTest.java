@@ -196,4 +196,21 @@ public class ParkingBoyTest {
         // then
         assertEquals("Unrecognized parking ticket.", result);
     }
+
+    @Test
+    public void should_return_not_enough_position_when_parking_given_no_position() {
+        // given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        for (int i = 0; i < 10; i++) {
+            Car car = new Car("A1234" + i);
+            parkingBoy.park(car);
+        }
+        Car car11 = new Car("A1234" + 10);
+
+        // when
+        String result = parkingBoy.getResponseMessage();
+
+        // then
+        assertEquals("Not enough position.", result);
+    }
 }
