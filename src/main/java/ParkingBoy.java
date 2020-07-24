@@ -12,7 +12,7 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car) {
-        if (parkingLot.size() == maxPosition || isCarParked(car)) {
+        if (parkingLot.size() == maxPosition || isCarParked(car) || car == null) {
             return null;
         }
         Ticket ticket = new Ticket(car.getCarNumber());
